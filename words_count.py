@@ -7,10 +7,11 @@ output = sys.argv[2]
 
 if __name__ == "__main__":
 	sc = SparkContext(conf=SparkConf())
+
+	f = open("log.txt", "a")
+	f.write("Hello World!")
+	f.close()
 	
 	words = sc.textFile(input).flatMap(lambda line: line.split())
 	wordCounts = words.map(lambda word: (word.lower(), 1)).reduceByKey(lambda a,b:a +b)
 	wordCounts.saveAsTextFile(output)
-	f = open("log.txt", "a")
-	f.write("Hello World!")
-	f.close()

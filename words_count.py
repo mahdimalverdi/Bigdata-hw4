@@ -6,10 +6,7 @@ input = "hw-4/sample.txt"
 output = "hw-4/output"
 
 if __name__ == "__main__":
-	conf = SparkConf()
-	conf.setMaster('yarn')
-	conf.setAppName('words count')
-	sc = SparkContext(conf=conf)
+	sc = SparkContext(SparkConf())
 
 	words = sc.textFile(input).flatMap(lambda line: line.split())
 	wordCounts = words.map(lambda word: (word, 1)).reduceByKey(lambda a,b:a +b)

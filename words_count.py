@@ -2,8 +2,8 @@ import sys
 from pyspark import SparkContext, SparkConf
  
 #input = "hdfs://localhost/user/ebrahimi/file500.txt"
-input = "hw-4/sample.txt"
-output = "hw-4/output"
+input = sys.argv[0]
+output = sys.argv[1]
 
 if __name__ == "__main__":
 	sc = SparkContext(conf=SparkConf())

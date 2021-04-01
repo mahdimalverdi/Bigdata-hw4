@@ -9,5 +9,5 @@ if __name__ == "__main__":
 	sc = SparkContext(conf=SparkConf())
 
 	words = sc.textFile(input).flatMap(lambda line: line.split())
-	wordCounts = words.map(lambda word: (word, 1)).reduceByKey(lambda a,b:a +b)
+	wordCounts = words.map(lambda word: (word.lower(), 1)).reduceByKey(lambda a,b:a +b)
 	wordCounts.saveAsTextFile(output)

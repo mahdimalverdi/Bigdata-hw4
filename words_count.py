@@ -6,7 +6,11 @@ input = "sample.txt"
 output = "output"
 
 if __name__ == "__main__":
-	sc = SparkContext("local","Word Count")
+	conf = SparkConf()
+	conf.setMaster('yarn')
+	conf.setAppName('words count')
+	sc = SparkContext(conf=conf)
+
 	print("start")
 	words = sc.textFile(input).flatMap(lambda line: line.split())
 	print("read")

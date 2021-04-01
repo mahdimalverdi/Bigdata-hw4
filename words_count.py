@@ -2,7 +2,7 @@ import sys
 from pyspark import SparkContext, SparkConf
  
 #input = "hdfs://localhost/user/ebrahimi/file500.txt"
-input = "ebrahimi/file500.txt"
+input = "/user/ebrahimi/file500.txt"
 output = "output"
 
 if __name__ == "__main__":

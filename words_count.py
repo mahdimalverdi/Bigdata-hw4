@@ -6,12 +6,8 @@ input = sys.argv[1]
 output = sys.argv[2]
 
 if __name__ == "__main__":
+	print("start")
 	sc = SparkContext(conf=SparkConf())
-
-	log4jLogger = sc._jvm.org.apache.log4j 
-	log = log4jLogger.LogManager.getLogger(__name__) 
-	log.info("Hello World!")
-
 	words = sc.textFile(input).flatMap(lambda line: line.split())
 	wordCounts = words.map(lambda word: (word.lower(), 1)).reduceByKey(lambda a,b:a +b)
 	wordCounts.saveAsTextFile(output)
